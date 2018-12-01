@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section id="bigBox">
         <!-- <div style="height:40px;color:red;fontSize:30px;marginTop:50px;"> -->
         <!-- <button @click="number_remove">-</button> -->
         <!-- {{$store.state.content}} -->
@@ -7,10 +7,7 @@
         <!-- <button @click="content_add()">+</button> -->
         <!-- </div> -->
         <div class="nav">
-            <top-nav @select="changeImg"/>
-        </div>
-        <div class="topImg">
-            <img :src="topImg" alt="">
+            <top-nav/>
         </div>
         <!-- <music-control class="music" /> -->
         <div class="headPortrait">
@@ -19,7 +16,9 @@
         </div>
         <div class="content-box">
             <keep-alive>
-                <router-view />
+                <transition name="slide-fade">
+                    <router-view></router-view>
+                </transition>
             </keep-alive>
         </div>
         <footers class="footers" />
@@ -37,13 +36,6 @@
         data() {
             return {
                 headPortrait: require("../../assets/image/musicControlBg.png"),
-                topImg: '',
-                topphoto: require('../../assets/image/message/topphoto.jpg'),
-                topMessage: require('../../assets/image/message/topMessage.jpg'),
-                topTime: require('../../assets/image/message/topTime.jpg'),
-                topAboutme: require('../../assets/image/message/topaboutme.jpg'),
-                topprint: require('../../assets/image/message/topprint.jpg'),
-
             }
         },
         mounted() {
@@ -74,28 +66,6 @@
             logOut(){
                 this.$router.push('/')
             },
-            changeImg(val){
-                switch (val){
-                    case 'home':
-                        this.topImg = ''
-                        break;
-                    case 'time': 
-                        this.topImg = this.topTime;
-                        break;
-                    case 'photo': 
-                        this.topImg = this.topphoto;
-                        break;
-                    case 'footprint': 
-                        this.topImg = this.topprint;
-                        break;
-                    case 'aboutme': 
-                        this.topImg = this.topAboutme;
-                        break;
-                    case 'message': 
-                        this.topImg = this.topMessage;
-                        break;
-                }
-            }
         },
         components: {
             topNav,
@@ -106,18 +76,14 @@
 </script>
 
 <style lang="less">
+#bigBox{
+    background: #0000008f;
+    position: relative;
     .nav {
         position: fixed;
         top: 0px;
         width: 100%;
         z-index: 1000;
-    }
-    .topImg{
-        margin-top: 60px;
-        img{
-            height: 220px;
-            width: 100%;
-        }
     }
     .slideUp{
         transition: all .5s;
@@ -158,14 +124,44 @@
     }
 
     .content-box {
-        margin-top: 30px;
+        // margin-bottom: 30px;
     }
 
     .footers {
-        margin-top: 40px;
+        position: absolute;
+        bottom: 0;
+        // margin-top: 40px;
         // position: fixed;
         // bottom: 0px;
         width: 100%;
         // z-index: 1000;
     }
+    .transitionRouter-enter-active,
+    .transitionRouter-leave-active {
+        transition: all 0.4s;
+    }
+
+    .transitionRouter-enter,
+    .transitionRouter-leave{
+        transform: translate3d(100%, 0, 0);
+    }
+
+
+    .slide-fade{
+        position: absolute;left:0;right: 0;
+    }
+    .slide-fade-enter-active {
+        transition: all 1s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .1s cubic-bezier(2.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    {
+        left:0;right: 0;
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+
 </style>

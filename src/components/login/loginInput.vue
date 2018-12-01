@@ -9,7 +9,12 @@
                 <el-input v-model="ruleForm.password" placeholder="请输入密码" type="password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
             </el-form-item>
         </el-form>
-        <el-button type="success" plain @click="submitForm('ruleForm')">登录</el-button>
+        <div class="btnBox">
+            <!-- <el-button type="success" size="mini" plain @click="submitForm('ruleForm')">登录</el-button> -->
+            <el-button type="success" size="" plain @click="submitForm">登录</el-button>
+            <el-button type="" size="" plain @click="submitForm('visitor')">游客登录</el-button>
+
+        </div>
     </div>
         <bg class="bg"></bg>
         <!-- </router-link> -->
@@ -19,12 +24,13 @@
 
 <script>
 import bg from '../../components/common/loginBg'
+import { stringify } from 'querystring';
     export default {
         data() {
             return {
                 ruleForm: {
-                    name: 'zjx',
-                    password: '123456'
+                    name: '',
+                    password: ''
                 },
                 rules: {
                     name: [
@@ -55,17 +61,25 @@ import bg from '../../components/common/loginBg'
             sessionStorage.removeItem('token')
         },
         methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
+            submitForm(val) {
+                if (val==='visitor') {
+                    sessionStorage.removeItem('login')
+                    this.$router.push('index')
+                    return;
+                }
+                this.$refs['ruleForm'].validate((valid) => {
                     if (valid) {
                         let param = {
                             userName: this.ruleForm.name,
                             password: this.ruleForm.password
                         }
+                        // console.log(param,'-------');
+                       
+                            // debugger;
                         this.$api.login(param).then(res=>{
                             let {success,msg,data} = res
                             if (success) {
-                                sessionStorage.setItem('token',data)
+                                sessionStorage.setItem('login', 'true')
                                 // this.$message.success('登陆成功！')
                                 this.$notify({
                                     title: '成功',
@@ -123,11 +137,7 @@ import bg from '../../components/common/loginBg'
             margin-bottom: 20px;
         }
 
-        .el-button {
-            display: block;
-            margin: 0 auto;
-            width: 60%;
-        }
+        
 
         .el-form-item__error {
             left: 20%;
@@ -141,7 +151,17 @@ import bg from '../../components/common/loginBg'
             height: 350px;
             padding-top: 30px;
             border-radius: 10px;
-
+            .btnBox{
+                margin: 0 auto;
+                width: 60%;
+                display: flex;
+                justify-content: space-between;
+                .el-button {
+                    display: block;
+                    margin: 0 auto;
+                    width: 49%;
+                }
+            }
         }
         .bg{
             position: fixed;

@@ -1,8 +1,7 @@
 <template>
 
     <section id="times">
-        <!-- <img :src="topBg" alt="" style="width:100%;height:100px;"> -->
-        <backIndex :label="subLabel" />
+        <backIndex :label="subLabel" class="backIndex"/>
         <!-- <keep-alive> -->
         
         <div class="time">
@@ -35,11 +34,12 @@
     export default {
         data() {
             return {
-                topBg: require('assets/image/bg3.jpg'),
                 subLabel: {
                     label: '时间轴',
                     text: '时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会。'
                 },
+                bg2: require('../../assets/image/homeimg/homeBg2.jpg'),
+
                 detailsContent: {},
                 timeShaft: []
             }
@@ -91,10 +91,23 @@
 </script>
 <style lang="less">
     #times {
+        background-repeat:  no-repeat;
+        background: url('../../assets/image/homeimg/homeBg2.jpg');
+        background-size: cover;
+        background-position:center;
+        background-attachment: fixed;
+        padding-bottom: 60px;
+        // .topimg{
+        //     width: 100%;
+        //     height: 220px;
+        // }
+        // .backIndex{
+        //      width: 90%;
+        // margin: 0 auto;
+        // }
+        .time {
         width: 90%;
         margin: 0 auto;
-
-        .time {
             height: 700px;
             display: flex;
             justify-content: space-between;
@@ -103,19 +116,20 @@
                 cursor: pointer;
                 margin-top: 10px;
                 padding: 40px;
-                background: #fff;
+                background: rgba(255, 255, 255, .8);
                 width: 55%;
 
                 .el-step__description.is-process {
-                    background: #ccc;
+                    background: #86a7aa;
                     border-radius: 10px;
                     padding: 10px 10px;
                     width: 98%;
                     transition: all .5s;
-
+                    color: #fff;
                     &:hover {
+                        color: #686868;
                         width: 100%;
-                        background: #e0e0e0;
+                        background: rgba(255, 255, 255, .2);
                     }
                 }
             }
@@ -123,7 +137,7 @@
             .detailsCont {
                 width: 43%;
                 height: 700px;
-                background: #fff;
+                background: rgba(255, 255, 255, .8);
                 margin-top: 10px;
                 padding: 40px;
 

@@ -19,6 +19,7 @@ const
 	require(
 		'./vue-loader.conf'
 	)
+var webpack = require("webpack") 
 
 function resolve(
 	dir
@@ -30,7 +31,6 @@ function resolve(
 			dir
 		)
 }
-
 const
 	createLintingRule =
 	() =>
@@ -172,5 +172,13 @@ module
 			net: 'empty',
 			tls: 'empty',
 			child_process: 'empty'
-		}
+		},
+
+		plugins: [
+			new webpack.optimize.CommonsChunkPlugin('common.js'),
+			new webpack.ProvidePlugin({
+			jQuery: "jquery",
+			$: "jquery"
+			})
+		]
 	}

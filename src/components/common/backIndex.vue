@@ -12,8 +12,10 @@
     </section>
 </template>
 <script>
+    import {navActiveName} from '../../vuex1/mixin.js'
 
     export default {
+        mixins: [navActiveName],
         data(){
             return{
                 activeName: 'second'
@@ -27,16 +29,22 @@
         mounted(){
         },
         watch: {
-            "$route.name": function(newval){
-                if (newval!="home") {
-                    this.activeName = "second";                    
-                }
-            }
+            // "$route.name": function(newval){
+            //     if (newval!="home") {
+            //         this.activeName = "second";                    
+            //     }
+            // }
+        },
+        activated (){
+            this.activeName = "second";
+            // console.log(this.navActiveName,'[][][][][[=-=000');
+            
         },
         methods: {
-            handleClick(){
+            handleClick(val){
                 // 点击首页是返回首页
-                if (this.activeName==="first") {
+                if (val.name==="first") {
+                    this.navActiveName_set('1')
                     this.$router.push('index')
                 }
             }
@@ -53,7 +61,17 @@
         .text{
             position: absolute;
             right: 20px;
-            top: 12px;
+            top: 110px;
+            color: #ffd5d5;
+        }
+        .el-tabs__item{
+            color: #fff;
+            }
+        .el-tabs__item:hover{
+            color:rgb(255, 208, 75);
+        }
+        .el-tabs__item.is-active{
+            color: rgb(255, 208, 75);
         }
     }
 </style>

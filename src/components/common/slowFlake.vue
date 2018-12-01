@@ -23,7 +23,6 @@ export default {}
     overflow: hidden;
     z-index: 2;
     pointer-events: none;
-    /* background-image: url('../../assets/image/videoBg.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: rgba(0,255,0,0.2); */

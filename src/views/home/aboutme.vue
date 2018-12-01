@@ -1,6 +1,6 @@
 <template>
     <section id="aboutme">
-        <backIndex :label="subLabel"/>
+        <backIndex :label="subLabel" class="backIndex"/>
         <div class="aboutme">
             <div class="aboutmeCont">
                 <h2>基本信息</h2>
@@ -65,13 +65,17 @@
 </template>
 <script>
     import backIndex from 'components/common/backIndex'
+    import {navActiveName} from '../../vuex1/mixin.js'
+
     export default {
+        mixins: [navActiveName],
         data() {
             return {
                 subLabel: {
                     label: '关于我',
                     text: '像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。'
                 },
+
                 headPortrait: require('assets/image/aboutmeimg/headPortrait.jpg'),
                 weixin: require('assets/image/aboutmeimg/weixin.png'),
                 activeNames: ['1'],
@@ -105,18 +109,23 @@
 </script>
 <style lang="less">
 #aboutme{
-    width: 90%;
-    margin: 0 auto;
+    padding-bottom: 60px;
+    background: url('../../assets/image/aboutmeimg/bg.jpg') no-repeat fixed;
+    background-size: cover;
+    background-position:center;
     .aboutme {
+        width: 90%;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
 
         .aboutmeCont {
             margin-top: 10px;
             font-size: 16px;
-            background: #fff;
+            background: rgba(255, 255, 255, .9);
             width: 57%;
             padding: 40px;
+            border-radius: 5px;
 
             .basicInfomation {
                 border-bottom: solid 1px #ccc;
@@ -153,6 +162,7 @@
             .top {
                 padding: 20px;
                 background: url('../../assets/image/aboutmeimg/wall.jpg');
+                border-radius: 5px;
                 margin-bottom: 20px;
                 height: 400px;
 
@@ -165,14 +175,15 @@
                     font-size: 14px;
                     margin-top: -55px;
                     padding: 60px 40px;
-                    background: #fff;
+                    background: rgba(255, 255, 255, .9);
                     height: 85%;
                     line-height: 35px;
                 }
             }
 
             .bottom {
-                background: #fff;
+                background: rgba(255, 255, 255, .9);
+                border-radius: 5px;
                 padding: 30px;
 
                 img {

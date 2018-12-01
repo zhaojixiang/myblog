@@ -16,9 +16,10 @@
 </script>
 <style lang="less">
     #footers{
+        color: #ccc;
         width: 100%;
         height: 50px;
         line-height: 50px;
-        background: hsl(0, 0%, 47%);
+        background: rgba(0, 0, 0, .3);
     }
 </style>

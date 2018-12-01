@@ -3,28 +3,44 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-// import './assets/less/iview.less';
+// import '../static/editor.md/css/editormd.min.css'
+// import '../assets/less/iview.less';
 import vueRouter from 'vue-router'
-import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import loading from 'components/common/loading'
 import store from './vuex1/index'
 import animate from 'animate.css'
 import VueLazyload from 'vue-lazyload'
+import $ from 'jquery'
+
+import './assets/css/common.css'
 
 import {request} from './utils/api.js'
 import './assets/js/scrollReveal.js';
+// 引入富文本编辑器
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 // Vue.config.productionTip = false
 
-Vue.use(iView);
-Vue.use(ElementUI);
+// elementui组件
+import {Row,Col,Menu,MenuItem,Carousel,CarouselItem,Tabs,TabPane,Steps,Step,Table,TableColumn,Collapse,CollapseItem,Form,FormItem,Input,Button,Notification,Popover,DatePicker} from 'element-ui';
+Vue.use(Row).use(Col).use(Menu).use(MenuItem).use(Carousel).use(CarouselItem).use(Tabs).use(TabPane).use(Steps).use(Step).use(Table).use(TableColumn).use(Collapse).use(CollapseItem).use(Form).use(FormItem).use(Input).use(Button).use(Popover).use(DatePicker);
+// elementui组件入坑，message和notification必须用下面这种引入方法，不能用vue.use()
+Vue.component(Notification.name, Notification)
+Vue.prototype.$notify = Notification
+
+// iview组件
+import {Icon} from 'iview'
+Vue.component('Icon', Icon);
+
+Vue.use(mavonEditor)
+
 Vue.use(loading);
 Vue.use(vueRouter)
 Vue.use(VueLazyload,{
-    loading: './assets/image/loading.jpg'
+    loading: require('./assets/image/loading.gif')
 })
 
 Vue.prototype.$api = request

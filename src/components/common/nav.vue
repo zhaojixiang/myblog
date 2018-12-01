@@ -2,52 +2,65 @@
   <section class="navs">
       <el-menu
         :router="true"
-        :default-active="activeName"
+        :default-active="$route.name"
         class="el-menu-demo"
         mode="horizontal"
         @select="select"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
-            <el-menu-item :route="{name: 'home'}" index="1">
+            <el-menu-item :route="{name: 'home'}" index="home">
                 <template slot="title">
                     <Icon type="ios-home"></Icon>
                     <span>首页</span>
                 </template>
             </el-menu-item>
             
-            <el-menu-item :route="{name: 'time'}" index="2">
+            <el-menu-item :route="{name: 'article'}" index="article">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <Icon type="ios-bookmarks" />
+                    <span>文章</span>
+                </template>
+            </el-menu-item>
+
+            <el-menu-item :route="{name: 'time'}" index="time">
+                <template slot="title">
+                    <Icon type="md-timer" />
                     <span>时间轴</span>
                 </template>
             </el-menu-item>
             
-            <el-menu-item :route="{name: 'photo'}" index="3">
+            <el-menu-item :route="{name: 'photo'}" index="photo">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <Icon type="md-photos" />
                     <span>生活照</span>
                 </template>
             </el-menu-item>
             
-            <el-menu-item :route="{name: 'footprint'}" index="4">
+            <!-- <el-menu-item :route="{name: 'footprint'}" index="footprint">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <Icon type="md-paw" />
                     <span>足迹</span>
                 </template>
-            </el-menu-item>
+            </el-menu-item> -->
             
-            <el-menu-item :route="{name: 'aboutme'}" index="5">
+            <el-menu-item :route="{name: 'aboutme'}" index="aboutme">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <Icon type="ios-information-circle" />
                     <span>关于我</span>
                 </template>
             </el-menu-item>
 
-            <el-menu-item :route="{name: 'message'}" index="6">
+            <el-menu-item :route="{name: 'message'}" index="message">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <Icon type="md-text" />
                     <span>留言板</span>
+                </template>
+            </el-menu-item>
+            <el-menu-item :route="{name: 'manage'}" index="manage" v-if="showManage">
+                <template slot="title">
+                    <Icon type="md-settings" />
+                    <span>后台管理</span>
                 </template>
             </el-menu-item>
     </el-menu>
@@ -56,16 +69,25 @@
 
 <script>
 import {subActiveName} from '../../vuex1/mixin.js'
+import {navActiveName} from '../../vuex1/mixin.js'
 export default {
-    mixins: [subActiveName],
+    mixins: [subActiveName,navActiveName],
 	data() {
 		return {
             theme1: 'light',
-            activeName: '1',
+            showManage: sessionStorage.getItem('login'), // 权限，是否显示后台管理
+            // activeName: '1',
 		}
     },
     methods:{
         select(name){
+            // this.navActiveName_set()
+            // console.log(this.navActiveName,'-=-=-=-=');
+        }
+    },
+    computed: {
+        active:function(){
+            return this.navActiveName
         }
     },
     watch: {
@@ -92,8 +114,12 @@ export default {
     }
 }
 </script>
+<style>
+
+</style>
 
 <style lang="less">
+// @import '../../assets/less/iview.less';
 .navs {
     // height: 200px;
 
@@ -106,6 +132,14 @@ export default {
     }
     .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item, .ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu{
         color: #fff;
+    }
+    .el-menu.el-menu--horizontal{
+        background: rgba(0,0,0,.3) !important;
+        border: none;
+    }
+    .el-menu--horizontal>.el-menu-item{
+        background:transparent !important;
+
     }
 }
 </style>

@@ -237,7 +237,6 @@ export default {
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke:1px rgba(224, 94, 94, 0.75);
         background: red;
-        // background-image: url('../../assets/image/pic1.jpg');
     }
     .heart1 {
         top: 500px;

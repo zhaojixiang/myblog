@@ -1,6 +1,6 @@
 <template>
     <section id="footprint">
-        <backIndex :label="subLabel"/>
+        <backIndex :label="subLabel" class="backIndex"/>
         <div class="footPrint">
             <div class="map1Box">
                 <map1 class='map1'></map1>
@@ -30,9 +30,11 @@
 </script>
 <style lang="less">
     #footprint {
-        width: 90%;
-        margin: 0 auto;
+        background: #fff;
+        padding-bottom: 60px;
         .footPrint{
+            width: 90%;
+            margin: 0 auto;
             background: #fff;
             .map1Box{
                 width: 55%;

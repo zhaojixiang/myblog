@@ -2,10 +2,10 @@
   <section id="lists">
       <!-- <h2 class="title">footprint</h2> -->
       <div class="icons">
-          <p><Icon type="plane"></Icon></p>
-          <p><Icon type="leaf"></Icon></p>
-          <p><Icon type="umbrella"></Icon></p>
-          <p><Icon type="paintbrush"></Icon></p>
+          <p><Icon type="ios-paper-plane-outline" /></p>
+          <p><Icon type="ios-leaf-outline" /></p>
+          <p><Icon type="ios-umbrella-outline" /></p>
+          <p><Icon type="ios-water-outline" /></p>
       </div>
       <ul>
           <li @click="play('mianzhu')"><span></span><img src="../../assets/image/mianzhu.jpg" alt=""><p>mianzhu</p></li>
@@ -19,7 +19,6 @@
 export default {
 	data() {
         return{
-            img1: require('../../assets/image/bg1.jpg')
         }
 	},
     methods:{

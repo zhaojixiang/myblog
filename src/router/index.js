@@ -8,11 +8,12 @@ import aboutme from '@/views/home/aboutme'
 import footprint from '@/views/home/footprint'
 import photo from '@/views/home/photoShow'
 import message from '@/views/home/messageBoard'
+import manage from '@/views/home/manage'
+import article from '@/views/home/article'
 
 
 // import photo from '@/views/photo/photo'
 import video from '@/views/video/video'
-import table from '@/views/table/table'
 Vue
 	.use(
 		Router
@@ -47,11 +48,6 @@ export default new Router
         				name: 'video',
         				component: video,
                     },
-                    {
-                        path: '/table',
-        				name: 'table',
-        				component: table,
-                    },
                     // 时间轴
                     {
                         path: '/time',
@@ -75,6 +71,16 @@ export default new Router
                         path: '/message',
         				name: 'message',
         				component: message,
+                    },
+                    {
+                        path: '/manage',
+        				name: 'manage',
+        				component: manage,
+                    },
+                    {
+                        path: '/article',
+        				name: 'article',
+        				component: article,
                     }
                 ]
 			}

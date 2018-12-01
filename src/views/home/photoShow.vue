@@ -1,19 +1,22 @@
 <template>
     <section id="photoShow">
-        <backIndex :label="subLabel"/>
+        <backIndex :label="subLabel" class="backIndex"/>
 
-        <el-row :gutter="60" class="photoBox">
+        <el-row :gutter="60" class="photoShow">
             <el-col :class="[`imgItem${index}`,'imgItemSty']" :span="6" v-for="(item,index) in pictures" :key="index" :data-scroll-reveal="item.animate">
                 <div class="imgBox">
-                    <img :src="item" alt="">
-                    <p>作为一个设计师,如果遭到质疑你是否能恪守自己的原则</p>   
+                    <span class="line1 vertical"></span>
+                    <span class="line2 vertical"></span>
+                    <span class="line3 cro"></span>
+                    <span class="line4 cro"></span>
+                    <img v-lazy="item" alt="">
+                    <p class="content">简单晒照几张，持续更新哈...</p>   
                 </div>
             </el-col>
         </el-row>
     </section>
 </template> 
 <script>
-// import '@/assets/js/scrollReveal.js'
 import scrollReveal from 'scrollReveal';
 import backIndex from 'components/common/backIndex'
 
@@ -26,33 +29,14 @@ export default {
             },
             scrollReveal: scrollReveal(),
             pictures: [
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg'),
-                require('@/assets/image/pic9.jpg')
+                require('@/assets/image/photoShow/pic1.jpg'),
+                require('@/assets/image/photoShow/pic2.jpg'),
+                require('@/assets/image/photoShow/pic3.jpg'),
+                require('@/assets/image/photoShow/pic4.jpg'),
+                require('@/assets/image/photoShow/pic5.jpg'),
+                require('@/assets/image/photoShow/pic6.jpg'),
+                require('@/assets/image/photoShow/pic7.jpg'),
+                require('@/assets/image/photoShow/pic8.jpg'),
             ],
             animate: [
                 'enter top over 3s after 0.5s',
@@ -274,26 +258,94 @@ export default {
 </script>
 <style lang="less">
 #photoShow{
-    width: 90%;
-    margin: 0 auto;
-    .photoBox{
+    background-repeat:  no-repeat;
+    background: url('../../assets/image/homeimg/photoBg.jpg');
+    background-size: cover;
+    background-position:center;
+    background-attachment: fixed;
+    padding-bottom: 60px;
+    .photoShow{
+        width: 90%;
+        margin: 0 auto !important;
         .imgItemSty{
             margin-top: 35px;
         }
         .imgBox{
-            background: #fff;
-            transition: all .2s;
+            width: 280px;
+            height: 375px;
+            position: relative;
+            // background: #fff;
+            transition: all 1.2s;
             img{
+                height: 100%;
                 width: 100%;
                 cursor: pointer;
 
             }
-            p{
-                padding: 8px 15px 10px;
+            .content{
+                position: absolute;
+                top: 25%;
+                color: transparent;
+                background: transparent;
+                padding: 8px 60px 10px;
+                transition: all .5s;
+
             }
             &:hover{
-                transform: scale(1.1,1.1)
+                transform: scale(1.1,1.1);
+                .cro{
+                    background: #fff;
+                    width: 90%;
+                }
+                .vertical{
+                    background: #fff;
+                    height: 90%;
+                }
+                .content{
+                    position: absolute;
+                    top: 38%;
+                    color: #fff;
+                    background: rgba(0, 0, 0, .3);
+                    padding: 8px 60px 10px;
+
+                }
             }
+            .cro{
+                display: inline-block;
+                background: transparent;
+                height: 1px;
+                width: 10%;
+                transition: all 1s;
+            }
+            .vertical{
+                display: inline-block;
+                background: transparent;
+                height: 10%;
+                width: 1px;
+                transition: all 1s;
+
+            }
+            .line1{
+                position: absolute;
+                top: 3%;
+                left: 10%;
+            }
+            .line2{
+                position: absolute;
+                top: 3%;
+                right: 10%;
+            }
+            .line3{
+                position: absolute;
+                top: 10%;
+                left: 3%;
+            }
+            .line4{
+                bottom: 10%;
+                right: 3%;
+                position: absolute;
+            }
+            
         }
     }
 }

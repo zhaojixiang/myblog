@@ -1,28 +1,28 @@
 <template>
     <section id="messageBoard">
-        <backIndex :label="subLabel"/>
+        <backIndex :label="subLabel" class="backIndex"/>
         <div class="message">
             <div class="messageList">
-            <div v-for="(item,index) in msgData" :key="index" class="msgItem">
-                <h2>{{item.name}}</h2>
-                <p>{{item.content}}</p>
-                <span class="time">{{(new Date(item.createAt)).toLocaleString()}}</span>
+                <div v-for="(item,index) in msgData" :key="index" class="msgItem">
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.content}}</p>
+                    <span class="time">{{(new Date(item.createAt)).toLocaleString()}}</span>
+                </div>
             </div>
-        </div>
-        <div class="rightCont">
-            <el-form class="formBox" :model="formData" :rules="rules" ref="formData">
-                <el-form-item label="留言：" prop="textarea2">
-                    <el-input style="min-height: 200px !important;" class="inputArea" type="textarea" autosize placeholder="随便说两句吧~" v-model="formData.textarea2">
-                    </el-input>
-                </el-form-item>
-                <el-form-item label="你的名字：" prop="name">
-                    <el-input placeholder="what’s your name?" v-model="formData.name" clearable>
-                    </el-input>
-                </el-form-item>
-            </el-form>
-            <el-button type="warning" plain @click="clean">清空</el-button>
-            <el-button type="success" plain @click="submit('formData')">提交</el-button>
-        </div>
+            <div class="rightCont">
+                <el-form class="formBox" :model="formData" :rules="rules" ref="formData">
+                    <el-form-item label="留言：" prop="textarea2">
+                        <el-input style="min-height: 200px !important;" class="inputArea" type="textarea" autosize placeholder="随便说两句吧~" v-model="formData.textarea2">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="你的名字：" prop="name">
+                        <el-input placeholder="what’s your name?" v-model="formData.name" clearable>
+                        </el-input>
+                    </el-form-item>
+                </el-form>
+                <el-button type="warning" plain @click="clean">清空</el-button>
+                <el-button type="success" plain @click="submit('formData')">提交</el-button>
+            </div>
         </div>
         
     </section>
@@ -37,6 +37,7 @@
                     label: '留言板',
                     text: '留下你想对我说的心里话吧'
                 },
+
                 formData: {
                     textarea2: '',
                     name: ''
@@ -120,20 +121,25 @@
 </script>
 <style lang="less">
     #messageBoard {
-        width: 90%;
-        margin: 0 auto;
+        background: url('../../assets/image/message/bg.jpg') no-repeat fixed;
+        background-size: cover;
+        background-position:center;
+        padding-bottom: 60px;
         .message{
+            width: 90%;
+            margin: 0 auto;
 
-        display: flex;
-        margin-top: 10px;
-        justify-content: space-between;
+            display: flex;
+            margin-top: 10px;
+            justify-content: space-between;
 
         .messageList {
             padding: 10px;
             text-align: left;
             width: 100%;
             width: 67%;
-            background: #fff;
+            background: rgba(255, 255, 255, .9);
+            border-radius: 5px;
 
             .msgItem {
                 padding: 30px;
@@ -161,7 +167,8 @@
             padding-top: 20px;
             height: 700px;
             width: 30%;
-            background: #fff;
+            background: rgba(255, 255, 255, .9);
+            border-radius: 5px;
 
             .formBox {
                 width: 90%;

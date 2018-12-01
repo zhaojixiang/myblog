@@ -1,6 +1,5 @@
 <template lang="html">
     <section class="video">
-        <!-- <img src="../../assets/image/videoBg2.jpg" alt=""> -->
         <video class="videoControls" :src="video" controls>
             你的浏览器不支持播放视频
         </video>
@@ -13,9 +12,9 @@ export default {
     data(){
         return{
             video: '',
-            video1: require('../../assets/video/we.mp4'),
-            video2: require('../../assets/video/shixi.mp4'),
-            video3: require('../../assets/video/mianzhu.mp4'),
+            // video1: require('../../assets/video/we.mp4'),
+            // video2: require('../../assets/video/shixi.mp4'),
+            // video3: require('../../assets/video/mianzhu.mp4'),
 
         }
     },
@@ -24,20 +23,20 @@ export default {
     methods:{
         play(val){
 
-            switch (val){
-                case "nanjing":
-                    this.video = this.video2;
-                    break;
-                case "changzhou":
-                    this.video = this.video2;
-                    break;
-                case "shanghai":
-                    this.video = this.video2;
-                    break;
-                case "mianzhu":
-                    this.video = this.video3;
-                    break;
-            }
+            // switch (val){
+            //     case "nanjing":
+            //         this.video = this.video2;
+            //         break;
+            //     case "changzhou":
+            //         this.video = this.video2;
+            //         break;
+            //     case "shanghai":
+            //         this.video = this.video2;
+            //         break;
+            //     case "mianzhu":
+            //         this.video = this.video3;
+            //         break;
+            // }
             let b = document.getElementsByClassName('videoControls')[0];
             setTimeout(()=>{
                 b.play()

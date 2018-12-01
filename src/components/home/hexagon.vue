@@ -102,7 +102,6 @@ export default {}
                 text-align: center;
                 color: #fff;
                 cursor: pointer;
-                background: url("../../assets/image/pic2.jpg");
                 transition: opacity 0.3s;
             }
             img {
